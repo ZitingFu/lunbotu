@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	li{list-style-type: none;}
+	.wo{
+		width:1000px;
+		height: 409px;
+		display: block;
+		margin: 50px auto;	
+	}
+	#hezi{
+		width:1000px;
+		height: 409px;
+		margin: 50px auto;	
+		
+	}
+	span{
+	position: relative;
+    display:inline-block;
+    width:16px;
+    height:16px;
+    border:2px solid#fff;
+    border-radius: 50%;
+    float:left;
+    cursor:pointer;
+    font-size:0;
+    margin-right:10px;
+    top:-100px;
+    left:450px;
+	}
+	yellow.{
+    background-color: yellow;
+
+	}
+	#LE{
+		position: relative;
+		top:-260px;
+		left:-180px;
+
+	}
+	#RI{
+		position: relative;
+		top:-260px;
+		right:-700px;
+	}
+	#div4{
+		width:50%;
+	}
+	</style>
+</head>
+<body>
+	<div id="hezi">
+	<marquee id="pmd" class="wo" behavior="" direction="left" scrollamount="50px" onmouseover="this.stop()"onmouseout="this.start()">
+		<img src="images/1.jpg" alt="">
+		<img src="images/2.jpg" alt="">
+		<img src="images/3.jpg" alt="">
+		<img src="images/4.jpg" alt="">
+		<img src="images/5.jpg" alt="">
+		<img id="gg"src="images/6.jpg" alt="">
+		<div id="div4"></div>
+	</marquee> 
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		<img id="LE" src="images/l.png" alt="">	
+		<img id="RI"src="images/r.png" alt="">	
+	</div>
+	<script>
+	var gg=document.getElementsByTagName('gg')
+	var div4=document.getElementsByTagName('div4')
+	console.log(hezi)
+		div4.innerHTML=gg.innerHTML
+
+	</script>	
+</body>
+</html>

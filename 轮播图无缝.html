@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+	li{
+		list-style:none;
+	}
+	#wrap{
+		margin: 80px auto;
+		width:1000px;
+		height: 409px;
+		position:relative;
+		overflow:hidden;
+	}
+	#ul li{
+		float: left;
+	}
+	#left{
+		position:absolute;
+		top:45%;
+		left:15px;
+		
+	}
+	#right{
+		position:absolute;
+		right:15px;
+		top:45%;	
+	}
+	#left,#right{
+		transition:all 3s;
+	}
+	#left:hover,#right:hover{
+		transform:scale(1.2);
+	}
+	#ul{
+		width:10000000px;
+	}
+	#dots{
+		position:absolute;
+		bottom:20px;
+		left:45%;
+	}
+	span{
+		width: 16px;
+		height:16px;
+		display: block;
+		border:2px solid white;
+		border-radius:100%;
+		float: left;
+		margin-left:10px;
+		cursor:pointer;
+		font-size: 0;
+	}
+	#dots .span1{
+		background-color:red;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="ul" style="margin-left:0;">
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/4.jpg" alt=""></li>
+			<li><img src="images/5.jpg" alt=""></li>
+		</ul>
+		<img id="left" src="images/l.png" alt="">
+		<img id="right" src="images/r.png" alt="">
+		<div id="dots"></div>
+	</div>
+	<script>
+	var dots=document.getElementById("dots")
+	var wrap=document.getElementById("wrap");
+	var ul=document.getElementById("ul");
+	var left=document.getElementById("left");
+	var lilist=ul.getElementsByTagName("li")
+	var right=document.getElementById("right")
+	var width=lilist.length
+	var a=0;
+	var m=0;
+	//向右边的两种情况
+	right.onclick=function(){
+		a++
+		if(a<width){
+	 		m++
+			donghua();
+		}
+		if(a==width){
+			//克隆
+			var newlast=lilist[0].cloneNode(true);
+			//复制
+			ul.appendChild(newlast);
+			donghua("next");
+			m=0
+		}
+	}	
+
+
+	//向左边的两种情况
+	left.onclick=function(dir){
+		a--
+		if(a != -1){
+			m--
+			donghua("prev")
+		}
+		else{
+              a = 0;
+              newli = lilist[lilist.length-1].cloneNode(true);
+              ul.insertBefore(newli,ul.firstChild);
+              ul.style.marginLeft = "-1000px";
+              m= width - 1;
+              donghua("prev");
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+	 //右边两种情况的共同调用		
+	function donghua(dir){
+
+			 t=setInterval(function(){
+			 	//小圆点调用
+		 	 updataDotStatus()
+
+			 ml=parseInt(ul.style.marginLeft)
+
+			ul.style.marginLeft=ml+(Math.floor((a*-1000)-ml)/11-1)+"px"
+
+			if(ml==a*-1000){
+					
+				console.log(a)
+				if(a==width){
+					ul.style.marginLeft=0+"px";
+					
+					a=0
+				}
+				clearInterval(t)
+			}
+
+
+			  // 判断该动画是否是向后箭头的障眼法情况
+              if(a == width){
+                  if(a == 0){
+                
+                ul.style.marginLeft = (-(width-1)*1000)+"px" ;
+              
+                ul.removeChild(newli);
+                
+                n = 0;
+              }
+
+
+
+			 if(dir == "next"){
+              ul.style.marginLeft = ml + (Math.floor((a*(-1000) - ml) / 12)) + "px"
+            }
+            if(dir == "prev"){
+              ul.style.marginLeft = ml + (Math.ceil((a*(-1000) - ml) / 12)) + "px"
+            }
+		},30)
+	}
+
+
+	// //right自动播放
+	// setInterval(function(){
+	// 	right.onclick()
+	// },2000)
+	// //right自动播放
+	// wrap.onmouseenter = function(){
+ //           clearInterval(t)
+ //        }
+    //小圆点建造
+    for(var i=0;i<width;i++){
+    	var spanlist=document.createElement("span")
+    	dots.appendChild(spanlist)
+	}
+      var spanlist = dots.getElementsByTagName("span");
+    	spanlist[0].className="span1"
+	//更新小圆点的函数
+	function updataDotStatus(){
+		for(var i = 0; i < width; i++){
+		spanlist[i].className = ""
+		}
+		spanlist[m].className = "span1";
+	}
+
+	//点击小圆点
+	for(var i=0;i<width;i++){
+		spanlist[i].innerHTML=i
+  		spanlist[i].onclick=function(){
+  			spanlist.className=""
+  			m=Number(this.innerHTML)
+  			spanlist[m].className="span1"
+
+  			}
+  		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+   *{padding:0;margin:0;}
+    .div1{
+     width:1000px;
+     margin:50px auto;
+     position:relative;
+    }
+    li{
+      list-style:none;
+      display: none;
+    }
+    .li-1{
+      display: block;
+    }
+  #left,#right{
+    position: absolute;
+    cursor:pointer;
+    transition:all 1s;
+    opacity:.6;
+  }
+   #left:hover,#right:hover{
+    transform:scale(1.2);
+    opacity:1;
+  }
+  span{
+    position:relative;
+    display:inline-block;
+    bottom:40px;
+    left: 43%;
+    width:16px;
+    height:16px;
+    border:2px solid#fff;
+    border-radius: 50%;
+    float:left;
+    cursor:pointer;
+    font-size:0;
+    margin-right:10px;
+  }
+  .f99{
+    background-color: #f99;
+  }
+  </style>
+</head>
+<body>
+	<div class="div1">
+    <ul>
+      <li class="li-1"><img  src="images/1.jpg" alt=""></li>
+      <li><img src="images/2.jpg" alt=""></li>
+      <li><img src="images/3.jpg" alt=""></li>
+      <li><img src="images/4.jpg" alt=""></li>
+      <li><img src="images/5.jpg" alt=""></li>
+      <li><img src="images/6.jpg" alt=""></li>
+    </ul>
+      <span class="f99">0</span>
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+  </div>
+    <script>
+      var li =document.getElementsByTagName("li")
+      var span=document.getElementsByTagName("span")
+      var a=0 //显示当前在第几张
+        for(var i=0;i<span.length;i++){
+            span[i].onmouseover=function(){
+
+            span[a].className=" "
+            
+            li[a].className=" "
+
+            a=this.innerHTML
+
+            span[a].className="f99"
+            
+            li[a].className="li-1"
+        }
+    } 
+
+    </script>
+</body>
+</html>
